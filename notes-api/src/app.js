@@ -1,51 +1,37 @@
+//app.js
+
+//porta 3000
+//http://localhost:3000
 const express = require("express");
-const pool = require("./db/connect");
+const pool = require("./db/connect.js");
 const bcrypt = require("bcrypt");
 const app = express();
 app.use(express.json());
 
-app.post("/users",async (req, res) => {
-    const { name, email, password } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);;
-    const values = [name, email, hashedPassword];
-    const sql = ("INSERT INTO users (name, email, password) VALUES ($1, $2, $3)");
+//user
+const userRoutes = require("./routes/userRoutes.js");
+//"./routes/userRoutes.js"
+app.use(userRoutes);
 
-    try {
-        await pool.query(sql, values);
-        
-        res.status(201).json({  
-            message: "usuario criado",
-            user: {
-                name,
-                email
-            }
-        })
+//login
+const loginRoutes = require("./routes/loginRoutes.js");
+//"./routes/loginRoutes.js"
+app.use(loginRoutes);
 
-    } catch(error){
-//        console.log(error);
-        if(error.code === "23505"){
-            return res.status(409).json({
-                error: " email ja existe"
-            })
-        }
-
-        return res.status(500).json({
-            erro: "erro interno"
-        })
-
-    }
-   
-})
-
-
-
+/*
+test
+this block was created to test the connectio to the db
 
 app.get("/test-db", async (req, res) => {
-
-    const result = await pool.query("SELECT NOW()")
-
-    res.json(result.rows)
-
+    
+    const result = await pool.query("SELECT NOW()");
+    
+    res.json(result.rows,{
+        message: "API funcionando"
+    })  
+    
 })
-
-app.listen(3000)
+*/
+app.listen(3000, () => {
+    console.log("Servidor rodando na porta 3000");
+});

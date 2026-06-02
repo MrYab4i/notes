@@ -1,0 +1,44 @@
+{
+  "success": {
+    "200": {
+      "name": "OK",
+      "use": "Requisição realizada com sucesso"
+    },
+    "201": {
+      "name": "Created",
+      "use": "Recurso criado com sucesso"
+    }
+  },
+  "client_errors": {
+    "400": {
+      "name": "Bad Request",
+      "use": "Dados inválidos ou campos obrigatórios faltando"
+    },
+    "401": {
+      "name": "Unauthorized",
+      "use": "Usuário não autenticado, senha errada ou token ausente"
+    },
+    "403": {
+      "name": "Forbidden",
+      "use": "Usuário autenticado, mas sem permissão"
+    },
+    "404": {
+      "name": "Not Found",
+      "use": "Rota ou recurso não encontrado"
+    },
+    "409": {
+      "name": "Conflict",
+      "use": "Conflito de dados, exemplo: email já cadastrado"
+    },
+    "422": {
+      "name": "Unprocessable Entity",
+      "use": "Dados enviados não passaram na validação"
+    }
+  },
+  "server_errors": {
+    "500": {
+      "name": "Internal Server Error",
+      "use": "Erro interno no servidor"
+    }
+  }
+}
