@@ -18,6 +18,9 @@ const loginRoutes = require("./routes/loginRoutes.js");
 //"./routes/loginRoutes.js"
 app.use(loginRoutes);
 
+//notes
+const notesRoutes = require("./routes/noteRoutes.js");
+app.use(notesRoutes);
 /*
 test
 this block was created to test the connectio to the db
